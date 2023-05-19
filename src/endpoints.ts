@@ -1,0 +1,1 @@
+export const urlRequests = `http://localhost:5087/api/Requests/allRequests`;
