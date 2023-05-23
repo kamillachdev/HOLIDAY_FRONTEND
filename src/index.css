@@ -1,26 +1,31 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,500&display=swap');
 
 body {
   margin: 0;
-  font-family: Bahnschrift;
+  font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #main {
-  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 80vh;
+  height: 80%;
 }
 
 footer
 {
   text-align: center;
-  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+  background: linear-gradient(60deg, #575756 0%, #b63265 100%);
   color: white;
-  height: 5%;
+  height: 50px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
 }
 
 code {
@@ -29,20 +34,20 @@ code {
 }
 
 h1 {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight:300;
-  letter-spacing: 2px;
-  font-size:48px;
+  font-size:55px;
+  margin-bottom: 30px;
 }
 
 .header {
   position:relative;
   text-align:center;
-  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+  background: linear-gradient(60deg, #575756 0%, #b63265 100%);
   color:white;
 }
 .logo {
-  width:50px;
+  width:180px;
   fill:white;
   padding-right:15px;
   display:inline-block;
@@ -157,13 +162,13 @@ h1 {
 
 #fl-table thead th {
   color: #ffffff;
-  background: rgba(0,172,193,1);
+  background: #b63265;
 }
 
 
 #fl-table thead th:nth-child(odd) {
   color: #ffffff;
-  background: rgba(84,58,183,1);
+  background: #575756;
 }
 
 #fl-table tr:nth-child(even) {
