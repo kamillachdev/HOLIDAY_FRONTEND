@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../Forms";
+import { Grid } from '@mui/material';
 
 const Forgot = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +41,7 @@ const Forgot = () => {
   };
 
   return (
+    
     <div className="row g-0 auth-wrapper">
       <div className="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
         <div className="auth-background-holder"></div>
