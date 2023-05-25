@@ -29,17 +29,7 @@ const Main = () =>
           </Grid>
           <Grid item xs={12} style={{ flex: 1 }}>
             <div id="main">
-              <div>
-                <form action="/login">
-                  <input type="submit" value="LOGOWANIE" />
-                </form>
-                <form action="/register">
-                  <input type="submit" value="REJESTROWANIE" />
-                </form>
-                <form action="/requests">
-                  <input type="submit" value="WNIOSKI" />
-                </form>
-              </div>
+              <button className='glowing-btn'><a className="buttonLink" href="/login"><span className='glowing-txt'>START</span></a></button>
             </div>
           </Grid>
           <Grid item xs={12} style={{ flex: 1 }}>
