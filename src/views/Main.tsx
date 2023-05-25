@@ -31,13 +31,13 @@ const Main = () =>
             <div id="main">
               <div>
                 <form action="/login">
-                  <input type="submit" value="LOGIN" />
+                  <input type="submit" value="LOGOWANIE" />
                 </form>
                 <form action="/register">
-                  <input type="submit" value="REGISTER" />
+                  <input type="submit" value="REJESTROWANIE" />
                 </form>
                 <form action="/requests">
-                  <input type="submit" value="REQUESTS" />
+                  <input type="submit" value="WNIOSKI" />
                 </form>
               </div>
             </div>

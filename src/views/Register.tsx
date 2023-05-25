@@ -52,7 +52,7 @@ const Register = () => {
       setName("");
       setEmail("");
       setPassword("");
-      alert("Successfully Register User");
+      alert("Pomyślnie utworzono konto!");
     }
   };
 
@@ -68,7 +68,7 @@ const Register = () => {
           <div className="header">
             <div className="inner-header flex">
               <img src="/necto-logo.png" alt="Your Logo" className="logo" />
-              <h1>SYSTEM URLOPOWY</h1>
+              <h1 className="systemUrlopowy">SYSTEM URLOPOWY</h1>
             </div>
             <div>
               <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
@@ -90,7 +90,7 @@ const Register = () => {
               <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
                 <div className="d-flex flex-column align-content-end">
                   <div className="auth-body mx-auto">
-                    <p>Create your Account</p>
+                    <p>Załóż swoje konto</p>
                     <div className="auth-form-container text-start">
                       <form
                         className="auth-form"
@@ -109,7 +109,7 @@ const Register = () => {
                             id="name"
                             name="name"
                             value={name}
-                            placeholder="Name"
+                            placeholder="Nazwa"
                             onChange={(e) => setName(e.target.value)}
                           />
         
@@ -166,7 +166,7 @@ const Register = () => {
                               name="password"
                               id="password"
                               value={password}
-                              placeholder="Password"
+                              placeholder="Hasło"
                               onChange={(e) => setPassword(e.target.value)}
                             />
         
@@ -200,16 +200,16 @@ const Register = () => {
                             type="submit"
                             className="btn btn-primary w-100 theme-btn mx-auto"
                           >
-                            Sign Up
+                            Załóż konto
                           </button>
                         </div>
                       </form>
         
                       <hr />
                       <div className="auth-option text-center pt-2">
-                        Have an account?{" "}
+                        Posiadasz już konto?{" "}
                         <Link className="text-link" to="/login">
-                          Sign in
+                          Zaloguj się
                         </Link>
                       </div>
                     </div>

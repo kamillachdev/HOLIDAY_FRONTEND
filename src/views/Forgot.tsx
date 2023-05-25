@@ -36,7 +36,7 @@ const Forgot = () => {
     const validate = validateforgotPassword();
 
     if (validate) {
-      alert("Reset password link is sent to " + email);
+      alert("Link resetowania hasła został wysyłany do" + email);
       setValidate({ validate: {} });
       setEmail("");
     }
@@ -71,7 +71,7 @@ const Forgot = () => {
               <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
                 <div className="d-flex flex-column align-content-end">
                   <div className="auth-body mx-auto">
-                    <p>Forgot Password</p>
+                    <p>Nie pamiętasz hasła?</p>
                     <div className="auth-form-container text-start">
                       <form
                         className="auth-form"
@@ -112,7 +112,7 @@ const Forgot = () => {
                             type="submit"
                             className="btn btn-primary w-100 theme-btn mx-auto"
                           >
-                            Forgot Password
+                            Wyślij
                           </button>
                         </div>
                       </form>
@@ -120,7 +120,7 @@ const Forgot = () => {
                       <hr />
                       <div className="auth-option text-center pt-2">
                         <Link className="text-link" to="/login">
-                          Back to Login
+                        Powrót do logowania
                         </Link>
                       </div>
                     </div>

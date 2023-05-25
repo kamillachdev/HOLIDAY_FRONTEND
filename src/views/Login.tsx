@@ -47,7 +47,7 @@ const Login = () => {
       setValidate({});
       setEmail("");
       setPassword("");
-      alert("Successfully Login");
+      alert("Pomyślnie zalogowano się!");
     }
   };
 
@@ -85,7 +85,7 @@ const Login = () => {
               <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
                 <div className="d-flex flex-column align-content-end">
                   <div className="auth-body mx-auto">
-                    <p>Login to your account</p>
+                    <p>Zaloguj się na swoje konto</p>
                     <div className="auth-form-container text-start">
                       <form
                         className="auth-form"
@@ -133,7 +133,7 @@ const Login = () => {
                               name="password"
                               id="password"
                               value={password}
-                              placeholder="Password"
+                              placeholder="Hasło"
                               onChange={(e) => setPassword(e.target.value)}
                             />
         
@@ -173,13 +173,13 @@ const Login = () => {
                                   onChange={(e) => setRemember(e.currentTarget.checked)}
                                 />
                                 <label className="form-check-label" htmlFor="remember">
-                                  Remember me
+                                  Zapamiętaj mnie
                                 </label>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="forgot-password text-end">
-                                <Link to="/forgot-password">Forgot password?</Link>
+                                <Link to="/forgot-password">Zapomniałeś/aś hasła?</Link>
                               </div>
                             </div>
                           </div>
@@ -189,16 +189,16 @@ const Login = () => {
                             type="submit"
                             className="btn btn-primary w-100 theme-btn mx-auto"
                           >
-                            Log In
+                            Zaloguj
                           </button>
                         </div>
                       </form>
         
                       <hr />
                       <div className="auth-option text-center pt-2">
-                        No Account?{" "}
+                        Nie masz konta?{" "}
                         <Link className="text-link" to="/register">
-                          Sign up{" "}
+                        Zarejestruj sie{" "}
                         </Link>
                       </div>
                     </div>

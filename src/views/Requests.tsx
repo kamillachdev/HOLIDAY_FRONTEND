@@ -53,15 +53,15 @@ function App() {
         </Grid>
         <Grid item xs={12} style={{ flex: 1 }}>
           <div id="main">
-            <h5>REQUESTS</h5>
+            <h5 className="wnioski">Wnioski</h5>
             <div id="table-wrapper">
               <table id="fl-table">
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Date Start</th>
-                    <th>Date End</th>
-                    <th>User ID</th>
+                    <th>Data początkowa</th>
+                    <th>Date końcowa</th>
+                    <th>ID użytkownika</th>
                   </tr>
                 </thead>
                 <tbody>
