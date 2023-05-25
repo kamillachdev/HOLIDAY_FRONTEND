@@ -38,12 +38,17 @@ code {
     monospace;
 }
 
-h1 {
+h1.systemUrlopowy {
   font-family: 'Roboto', sans-serif;
   font-family: 'Rubik', sans-serif;
-  font-weight:300;
+  font-size: 33px;
+  margin-top: 10px;
+}
+
+h5 {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size:55px;
-  margin-bottom: 30px;
 }
 
 .header {
@@ -56,9 +61,10 @@ h1 {
 .logo {
   width:180px;
   fill:white;
-  padding-right:15px;
+  padding-right:12px;
   display:inline-block;
   vertical-align: middle;
+  margin-bottom: 8px; 
 }
 
 .inner-header {

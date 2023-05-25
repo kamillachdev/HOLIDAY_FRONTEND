@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Forgot from "./components/Forgot";
-import Requests from "./components/Requests"
-import Main from "./components/Main"
+import Login from "./views/Login";
+import Register from "./views/Register";
+import Forgot from "./views/Forgot";
+import Requests from "./views/Requests"
+import Main from "./views/Main"
 
 function App() {
   return (

@@ -34,7 +34,7 @@ function App() {
           <div className="header">
             <div className="inner-header flex">
               <img src="/necto-logo.png" alt="Your Logo" className="logo" />
-              <h1>SYSTEM URLOPOWY</h1>
+              <h1 className="systemUrlopowy">SYSTEM URLOPOWY</h1>
             </div>
             <div>
               <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
@@ -53,7 +53,7 @@ function App() {
         </Grid>
         <Grid item xs={12} style={{ flex: 1 }}>
           <div id="main">
-            <h3>REQUESTS</h3>
+            <h5>REQUESTS</h5>
             <div id="table-wrapper">
               <table id="fl-table">
                 <thead>
@@ -78,10 +78,12 @@ function App() {
             </div>
           </div>
         </Grid>
+        <Grid item xs={12} style={{ flex: 1 }}>
+          <footer>
+            <span><b>&copy; {new Date().getFullYear()} Necto S.A.</b></span>
+          </footer>
+        </Grid>
       </Grid>
-      <footer>
-        <span><b>&copy; {new Date().getFullYear()} Necto S.A.</b></span>
-      </footer>
     </div>
   );
   
