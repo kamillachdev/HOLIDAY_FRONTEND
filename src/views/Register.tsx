@@ -4,13 +4,19 @@ import Form from "../Forms";
 import '../index.css';
 import '../auth.scss';
 import { Grid } from "@mui/material";
+import api from '../utils/api';
+import { useMutation } from 'react-query';
+import { AxiosError } from "axios";
+
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [validate, setValidate] = useState<any>({});
   const [showPassword, setShowPassword] = useState(false);
+  const [uploadForm, setUploadFile] = useState<FormData>();
 
   const validateRegister = () => {
     let isValid = true;
@@ -30,6 +36,9 @@ const Register = () => {
         isRequired: true,
         minLength: 6,
       },
+      role: {
+        value: role
+      }
     });
 
     if (validator !== null) {
@@ -42,19 +51,68 @@ const Register = () => {
     return isValid;
   };
 
+  const fetchRegisterData = async (formUpload: FormData | undefined) => 
+  {
+    const res = await api({
+      method: "post",
+      url: "/api/Auth/SignUp",
+      data: formUpload,
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    
+    if (res.status === 200)
+    {
+      return res.data;
+    }
+    throw new AxiosError(`error, status: ${res.status}`);
+  };
+
+  const handleDrop = async () =>
+  {
+    const formData = new FormData();
+    formData.append("userName", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("role", role);
+
+    setUploadFile(formData);
+  }
+
+
+
+
+  const registerMutation = useMutation(() => fetchRegisterData(uploadForm), {
+    onSuccess: () => {
+      setName("");
+      setEmail("");
+      setPassword("");
+      setRole("user");
+      alert("Pomyślnie utworzono konto!");
+    },
+    onError: (error) => {
+      console.error(error);
+      alert("Wystąpił błąd podczas rejestracji.");
+    },
+  });
+  
   const register = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const validate = validateRegister();
-
+  
     if (validate) {
       setValidate({});
       setName("");
       setEmail("");
       setPassword("");
-      alert("Pomyślnie utworzono konto!");
+      setRole("user");
+      registerMutation.mutate();
     }
   };
+  
+  
 
   const togglePassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -168,6 +226,7 @@ const Register = () => {
                               value={password}
                               placeholder="Hasło"
                               onChange={(e) => setPassword(e.target.value)}
+                              onChangeCapture={(e) => setRole("user")}
                             />
         
                             <button
@@ -196,7 +255,7 @@ const Register = () => {
                           </div>
                         </div>
                         <div className="text-center">
-                          <button
+                          <button onClick={handleDrop}
                             type="submit"
                             className="btn btn-primary w-100 theme-btn mx-auto"
                           >

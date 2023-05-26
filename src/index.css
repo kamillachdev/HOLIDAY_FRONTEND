@@ -326,7 +326,7 @@ h5.wnioski {
 }
 
 .glowing-btn:hover {
-  color: rgba(0, 0, 0, 0.8);
+  color: white;
   text-shadow: none;
   animation: none;
 }
