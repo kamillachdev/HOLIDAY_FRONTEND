@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import '../index.css';
 
-const Menu = () => 
+const CreateRequest = () => 
 {
     return (
     <div>
@@ -29,7 +29,13 @@ const Menu = () =>
           </Grid>
           <Grid item xs={12} style={{ flex: 1 }}>
             <div id="main">
-              
+            <nav>
+                <a href="/request/create">UTWÓRZ WNIOSEK</a>
+                <a href="/request/show">LISTA WNIOSKÓW</a>
+                <a href="/login">WYLOGUJ SIĘ</a>
+                <div className="animation start-home"></div>
+            </nav>
+
             </div>
           </Grid>
           <Grid item xs={12} style={{ flex: 1 }}>
@@ -41,4 +47,4 @@ const Menu = () =>
     </div>
     );
 };
-export default Menu;
+export default CreateRequest;
