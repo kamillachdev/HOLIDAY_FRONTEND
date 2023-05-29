@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import { AxiosResponse } from 'axios';
-import { urlRequests } from '../endpoints';
+import { AxiosError } from 'axios';
 import { Grid } from '@mui/material';
 import api from '../utils/api';
 import { UseQueryResult, useQuery } from 'react-query';

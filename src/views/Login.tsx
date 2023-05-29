@@ -1,15 +1,16 @@
 import React, { useState, FormEvent, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import Form from "../Forms";
-import '../index.css';
-import '../auth.scss'
+import "../index.css";
+import "../auth.scss";
 import { Grid } from "@mui/material";
-
+import api from "../utils/api";
+import { useMutation } from "react-query";
+import { AxiosError } from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
   const [validate, setValidate] = useState<any>({});
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,29 +40,57 @@ const Login = () => {
     return isValid;
   };
 
-  const authenticate = (e: FormEvent<HTMLFormElement>) => {
+  const fetchLoginData = async () => {
+    const res = await api({
+      method: "get",
+      url: `/api/user/getUser?email=${email}&password=${password}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.status === 200) {
+      return res.data;
+    }
+    throw new AxiosError(`error, status: ${res.status}`);
+  };
+
+  const loginMutation = useMutation(fetchLoginData, {
+    onSuccess: () => {
+      setEmail("");
+      setPassword("");
+      alert("Login successful!");
+    },
+    onError: (error) => {
+      console.error(error);
+      alert("An error occurred during login.");
+    },
+  });
+
+  const login = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const validate = validateLogin();
+    const isValid = validateLogin();
 
-    if (validate) {
+    if (isValid) {
       setValidate({});
       setEmail("");
       setPassword("");
-      alert("Pomyślnie zalogowano się!");
+      loginMutation.mutate();
     }
   };
+
 
   const togglePassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
- 
-   return (
+
+  return (
     <div>
       <Grid container direction="column" justifyContent="flex-start" alignItems="stretch" style={{ flex: 1 }}>
-      <Grid item xs={12}>
-          <div className="header">
+        <Grid item xs={12}>
+        <div className="header">
             <div className="inner-header flex">
               <img src="/necto-logo.png" alt="Your Logo" className="logo" />
               <h1 className="systemUrlopowy">SYSTEM URLOPOWY</h1>
@@ -82,47 +111,47 @@ const Login = () => {
           </div>
         </Grid>
         <Grid item xs={12} style={{ flex: 1 }}>
-            <div className="row g-0 auth-wrapper">
-              <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
-                <div className="d-flex flex-column align-content-end">
-                  <div className="auth-body mx-auto">
-                    <p>Zaloguj się na swoje konto</p>
-                    <div className="auth-form-container text-start">
-                      <form
-                        className="auth-form"
-                        method="POST"
-                        onSubmit={authenticate}
-                        autoComplete={"off"}
-                      >
-                        <div className="email mb-3">
-                          <input
-                            type="text"
-                            className={`form-control ${
-                              validate.validate && validate.validate.email
-                                ? "is-invalid "
-                                : ""
-                            }`}
-                            id="email"
-                            name="email"
-                            value={email}
-                            placeholder="Email"
-                            onChange={(e) => setEmail(e.target.value)}
-                          />
-        
-                          <div
-                            className={`invalid-feedback text-start ${
-                              validate.validate && validate.validate.email
-                                ? "d-block"
-                                : "d-none"
-                            }`}
-                          >
-                            {validate.validate && validate.validate.email
-                              ? validate.validate.email[0]
-                              : ""}
-                          </div>
+          <div className="row g-0 auth-wrapper">
+            <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
+              <div className="d-flex flex-column align-content-end">
+                <div className="auth-body mx-auto">
+                  <p>Zaloguj się do konta</p>
+                  <div className="auth-form-container text-start">
+                    <form
+                      className="auth-form"
+                      method="POST"
+                      onSubmit={login}
+                      autoComplete="off"
+                    >
+                      <div className="email mb-3">
+                        <input
+                          type="text"
+                          className={`form-control ${
+                            validate.validate && validate.validate.email
+                              ? "is-invalid "
+                              : ""
+                          }`}
+                          id="email"
+                          name="email"
+                          value={email}
+                          placeholder="Email"
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+
+                        <div
+                          className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.email
+                              ? "d-block"
+                              : "d-none"
+                          }`}
+                        >
+                          {validate.validate && validate.validate.email
+                            ? validate.validate.email[0]
+                            : ""}
                         </div>
-        
-                        <div className="password mb-3">
+                      </div>
+
+                      <div className="password mb-3">
                           <div className="input-group">
                             <input
                               type={showPassword ? "text" : "password"}
@@ -137,7 +166,7 @@ const Login = () => {
                               placeholder="Hasło"
                               onChange={(e) => setPassword(e.target.value)}
                             />
-        
+
                             <button
                               type="button"
                               className="btn btn-outline-primary btn-sm"
@@ -149,74 +178,53 @@ const Login = () => {
                                 }
                               ></i>{" "}
                             </button>
-        
-                            <div
-                              className={`invalid-feedback text-start ${
-                                validate.validate && validate.validate.password
-                                  ? "d-block"
-                                  : "d-none"
-                              }`}
-                            >
-                              {validate.validate && validate.validate.password
-                                ? validate.validate.password[0]
-                                : ""}
-                            </div>
-                          </div>
-        
-                          <div className="extra mt-3 row justify-content-between">
-                            <div className="col-6">
-                              <div className="form-check">
-                                <input
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="remember"
-                                  checked={remember}
-                                  onChange={(e) => setRemember(e.currentTarget.checked)}
-                                />
-                                <label className="form-check-label" htmlFor="remember">
-                                  Zapamiętaj mnie
-                                </label>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="forgot-password text-end">
-                                <Link to="/forgot-password">Zapomniałeś/aś hasła?</Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <button
-                            type="submit"
-                            className="btn btn-primary w-100 theme-btn mx-auto"
+
+                          <div
+                            className={`invalid-feedback text-start ${
+                              validate.validate && validate.validate.password
+                                ? "d-block"
+                                : "d-none"
+                            }`}
                           >
-                            Zaloguj
-                          </button>
+                            {validate.validate && validate.validate.password
+                              ? validate.validate.password[0]
+                              : ""}
+                          </div>
                         </div>
-                      </form>
-        
-                      <hr />
-                      <div className="auth-option text-center pt-2">
-                        Nie masz konta?{" "}
-                        <Link className="text-link" to="/register">
-                        Zarejestruj sie{" "}
-                        </Link>
                       </div>
+                      <div className="text-center">
+                        <button
+                          type="submit"
+                          className="btn btn-primary w-100 theme-btn mx-auto"
+                        >
+                          Zaloguj się
+                        </button>
+                      </div>
+                    </form>
+
+                    <hr />
+                    <div className="auth-option text-center pt-2">
+                      Nie masz konta?{" "}
+                      <Link className="text-link" to="/register">
+                        Załóż konto
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </Grid>
         <Grid item xs={12} style={{ flex: 1 }}>
           <footer>
-            <span><b>&copy; {new Date().getFullYear()} Necto S.A.</b></span>
+            <span>
+              <b>&copy; {new Date().getFullYear()} Necto S.A.</b>
+            </span>
           </footer>
         </Grid>
       </Grid>
     </div>
-     
-   );
- };
- 
- export default Login;
+  );
+};
+
+export default Login;
