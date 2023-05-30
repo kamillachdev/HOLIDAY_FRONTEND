@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../Forms";
 import '../index.css';
 import '../auth.scss';
@@ -17,6 +17,7 @@ const Register = () => {
   const [validate, setValidate] = useState<any>({});
   const [showPassword, setShowPassword] = useState(false);
   const [uploadForm, setUploadFile] = useState<FormData>();
+  const navigate = useNavigate();
 
   const validateRegister = () => {
     let isValid = true;
@@ -89,6 +90,7 @@ const Register = () => {
       setEmail("");
       setPassword("");
       setRole("user");
+      navigate("/login");
       alert("Pomyślnie utworzono konto!");
     },
     onError: (error) => {

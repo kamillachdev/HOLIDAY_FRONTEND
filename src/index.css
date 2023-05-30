@@ -369,7 +369,7 @@ nav {
 	position: relative;
 	width: 450px;
 	height: 50px;
-	background-color: #34495e;
+	background-color: #575756;
 	border-radius: 8px;
 	font-size: 0;
 }
@@ -417,4 +417,17 @@ nav .start-blog, a:nth-child(3):hover~.animation {
 	width: 150px;
 	left: 300px;
 	background-color: #b63265;
+}
+
+/*request form style*/
+
+.requestForm {
+  padding: 5px;
+  text-align: center;
+  width: 250px;
+  height: 300px;
+  border-radius: 8px;
+  background-color: #575756;
+  border: 4px solid #b63265;
+  color: white;
 }

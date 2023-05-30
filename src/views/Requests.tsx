@@ -67,8 +67,8 @@ function App() {
           <Grid item xs={12} style={{ flex: 1 }}>
             <div id="main">
             <nav>
-                <a href="/createRequest">UTWÓRZ WNIOSEK</a>
-                <a href="/requests">LISTA WNIOSKÓW</a>
+                <a href="/request/create">UTWÓRZ WNIOSEK</a>
+                <a href="/request/show">LISTA WNIOSKÓW</a>
                 <a href="/login">WYLOGUJ SIĘ</a>
                 <div className="animation start-home"></div>
             </nav>
