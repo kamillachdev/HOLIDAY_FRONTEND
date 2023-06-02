@@ -84,7 +84,6 @@ class Form {
       }
       return results;
     });
-
     results = Object.assign({}, ...results.map((result) => result));
 
     if (Object.keys(results).length > 0) {
